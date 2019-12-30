@@ -192,7 +192,7 @@ int SinglyLinkedList<T>::Size()
 }
 
 template<typename T>
-inline bool SinglyLinkedList<T>::Empty()
+bool SinglyLinkedList<T>::Empty()
 {
 	return _head == nullptr;
 }
