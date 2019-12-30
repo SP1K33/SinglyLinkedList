@@ -69,11 +69,11 @@ int main()
     cout << endl << "Second List: ";
     Out(secondList);
 
-    cout << "Merged frist and second list: ";
+    cout << endl << "Merged frist and second list: ";
     firstList.Merge(secondList);
     Out(firstList);
 
-    cout << "Cleared first list: ";
+    cout << endl << "Cleared first list: ";
     firstList.Clear();
     Out(firstList);
 

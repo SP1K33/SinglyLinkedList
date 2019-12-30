@@ -34,15 +34,15 @@ public:
 			Current = node;
 		}
 
-		Node<T>& operator++ (int)
+		Iterator& operator++ (int)
 		{
 			Current = Current->Next;
-			return *Current;
+			return *this;
 		}
-		Node<T>& operator++ ()
+		Iterator& operator++ ()
 		{
 			Current = Current->Next;
-			return *Current;
+			return *this;
 		}
 		Iterator& operator+ (int n)
 		{
@@ -71,11 +71,11 @@ public:
 
 	SinglyLinkedList();
 	~SinglyLinkedList();
-	T Front();
+	T& Front();
 	void PushBack(T data);
 	void PushFront(T data);
-	void InsertAfter(T data, Iterator &it);
-	void EraseAfter(Iterator& it);
+	void InsertAfter(T data, Iterator it);
+	void EraseAfter(Iterator it);
 	void PopFront();
 	void Merge(SinglyLinkedList<T> &list);
 	void Clear();
@@ -84,25 +84,25 @@ public:
 };
 
 template<typename T>
-SinglyLinkedList<T>::SinglyLinkedList()
+inline SinglyLinkedList<T>::SinglyLinkedList()
 {
 	_head = nullptr;
 }
 
 template<typename T>
-SinglyLinkedList<T>::~SinglyLinkedList()
+inline SinglyLinkedList<T>::~SinglyLinkedList()
 {
 	Clear();
 }
 
 template<typename T>
-inline T SinglyLinkedList<T>::Front()
+inline T& SinglyLinkedList<T>::Front()
 {
 	return _head->Data;
 }
 
 template<typename T>
-void SinglyLinkedList<T>::PushBack(T data)
+inline void SinglyLinkedList<T>::PushBack(T data)
 {
 	if (_head == nullptr)
 	{
@@ -120,13 +120,13 @@ void SinglyLinkedList<T>::PushBack(T data)
 }
 
 template<typename T>
-void SinglyLinkedList<T>::PushFront(T data)
+inline void SinglyLinkedList<T>::PushFront(T data)
 {
 	_head = new Node<T>(data, _head);
 }
 
 template<typename T>
-void SinglyLinkedList<T>::InsertAfter(T data, Iterator& it)
+inline void SinglyLinkedList<T>::InsertAfter(T data, Iterator it)
 {
 	Node<T>* node = _head;
 
@@ -140,7 +140,7 @@ void SinglyLinkedList<T>::InsertAfter(T data, Iterator& it)
 }
 
 template<typename T>
-void SinglyLinkedList<T>::PopFront()
+inline void SinglyLinkedList<T>::PopFront()
 {
 	Node<T>* oldHead = _head;
 	_head = _head->Next;
@@ -148,7 +148,7 @@ void SinglyLinkedList<T>::PopFront()
 }
 
 template<typename T>
-void SinglyLinkedList<T>::EraseAfter(Iterator& it)
+inline void SinglyLinkedList<T>::EraseAfter(Iterator it)
 {
 	Node<T>* node = _head;
 	while (it.Current != node)
@@ -161,7 +161,7 @@ void SinglyLinkedList<T>::EraseAfter(Iterator& it)
 }
 
 template<typename T>
-void SinglyLinkedList<T>::Merge(SinglyLinkedList<T> &list)
+inline void SinglyLinkedList<T>::Merge(SinglyLinkedList<T> &list)
 {
 	auto it = list.begin();
 	while (it != list.end())
@@ -172,7 +172,7 @@ void SinglyLinkedList<T>::Merge(SinglyLinkedList<T> &list)
 }
 
 template<typename T>
-int SinglyLinkedList<T>::Size()
+inline int SinglyLinkedList<T>::Size()
 {
 	if (_head == nullptr)
 	{
@@ -192,13 +192,13 @@ int SinglyLinkedList<T>::Size()
 }
 
 template<typename T>
-bool SinglyLinkedList<T>::Empty()
+inline bool SinglyLinkedList<T>::Empty()
 {
 	return _head == nullptr;
 }
 
 template<typename T>
-void SinglyLinkedList<T>::Clear()
+inline void SinglyLinkedList<T>::Clear()
 {
 	while (!Empty())
 	{
