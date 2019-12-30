@@ -3,6 +3,6 @@
 
 int main()
 {
-    cin.get();
+    std::cin.get();
     return 0;
 }
