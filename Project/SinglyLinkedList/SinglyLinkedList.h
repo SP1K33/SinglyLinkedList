@@ -27,42 +27,43 @@ private:
 public:
 	class Iterator
 	{
+	private:
+		Node<T>* _current;
 	public:
-		Node<T>* Current;
 		Iterator(Node<T>* node)
 		{
-			Current = node;
+			_current = node;
 		}
 
 		Iterator& operator++ (int)
 		{
-			Current = Current->Next;
+			_current = _current->Next;
 			return *this;
 		}
 		Iterator& operator++ ()
 		{
-			Current = Current->Next;
+			_current = _current->Next;
 			return *this;
 		}
 		Iterator& operator+ (int n)
 		{
 			for (int i = 0; i < n; ++i)
 			{
-				Current = Current->Next;
+				_current = _current->Next;
 			}
 			return *this;
 		}
 		bool operator!= (const Iterator& it)
 		{
-			return Current != it.Current;
+			return _current != it._current;
 		}
 		bool operator== (const Iterator& it)
 		{
-			return Current == it.Current;
+			return _current == it._current;
 		}
 		T& operator*()
 		{
-			return Current->Data;
+			return _current->Data;
 		}
 	};
 
@@ -130,7 +131,7 @@ inline void SinglyLinkedList<T>::InsertAfter(T data, Iterator it)
 {
 	Node<T>* node = _head;
 
-	while (it.Current != node)
+	while (it != node)
 	{
 		node = node->Next;
 	}
@@ -151,7 +152,7 @@ template<typename T>
 inline void SinglyLinkedList<T>::EraseAfter(Iterator it)
 {
 	Node<T>* node = _head;
-	while (it.Current != node)
+	while (it != node)
 	{
 		node = node->Next;
 	}
