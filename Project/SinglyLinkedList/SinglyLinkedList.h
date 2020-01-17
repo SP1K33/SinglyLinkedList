@@ -17,10 +17,6 @@ private:
 			Data = data;
 			Next = next;
 		}
-		bool operator!= (const Iterator& node)
-		{
-			return Data != node.Current->Data;
-		}
 	};
 
 	Node<T>* _head;
